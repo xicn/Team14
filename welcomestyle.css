@@ -1,0 +1,23 @@
+body{
+    --color-primary: #ffd700;
+    --color-primary-dark: #111111;
+    --color-secondary: #c0c0c0;
+    --color-error: #cc3333;
+    --color-sucess: #4bb544;
+    --border-radius: 40px;
+
+   
+    font-size: 18px;
+    color: var(--color-secondary);
+    background: var(--color-primary);
+    background-size: cover;
+}
+
+.titles{
+    color: var(--color-primary-dark);
+}
+.creategroup{
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
