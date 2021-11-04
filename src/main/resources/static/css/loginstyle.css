@@ -1,19 +1,19 @@
 body {
-    --color-primary: #ffd700;
+    --color-primary: rgb(255, 215, 0);
     --color-primary-dark: #111111;
     --color-secondary: #c0c0c0;
     --color-error: #cc3333;
     --color-sucess: #4bb544;
-    --border-radius: 40px;
+    /* --border-radius: 80px; */
 
     margin:0;
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     font-size: 18px;
-    color: var(--color-secondary);
-    background: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-dark);
     background-size: cover;
 }
 
@@ -23,10 +23,10 @@ body {
     margin: 1rem;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 0 40px rgba(0, 0, 0.2);
+    box-shadow: 0 0 400px rgba(255, 215, 0, .6);
     border-radius: var(--border-radius);
     background: var(--color-primary-dark);
-}
+} 
 
 .login,
 .form{
@@ -34,6 +34,27 @@ body {
 }
 
 .loginbutton{
-    width : 60px;
-    background-color: var(--color-secondary);
+    width : 100%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    border: none;
+    border-radius: 6px;
+    outline:none;
+    cursor: pointer;
+    background: var(--color-primary-dark);
+}
+
+.uspw{
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid var(--color-primary);
+    outline: none;
+    background: var(--color-primary-dark);
+    transition: background .2s, border-color .2s;
+    color: var(--color-primary);
 }
