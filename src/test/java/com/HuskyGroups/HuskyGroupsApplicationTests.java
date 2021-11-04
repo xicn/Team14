@@ -1,4 +1,4 @@
-package com.HuskyGroups.HuskyGroups;
+package com.HuskyGroups;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

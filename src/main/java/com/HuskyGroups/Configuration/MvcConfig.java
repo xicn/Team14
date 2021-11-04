@@ -1,4 +1,4 @@
-package com.HuskyGroups.HuskyGroups;
+package com.HuskyGroups.Configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

@@ -1,4 +1,4 @@
-package com.HuskyGroups.HuskyGroups;
+package com.HuskyGroups;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
