@@ -1,22 +1,46 @@
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/loginstyle.css">
-    </head>
-    <body>
-        <!--<script scr="whatever the javascript file name is"></script>-->
-        <form action="welcome.html" method="POST" class="form">
-            <section class="login">
-                <h1>Husky Groups</h1>
-                <label for="username"><b>Username:</b><br></label>        
-                <input type="text" placeholder="Username" name="username" id="username" required>
-                <br>
-                <br>
-                <label for="pw"><b>Password:</b><br></label>
-                <input type="password" placeholder="Password" name="pw" id="pw" required>
-                <br><br>
-                <button type="submit" class="loginbutton">Login</button>      
-            </section>
-        </form>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="70477435980-hcoujshji22jhmmlqajnoop0i7l75453.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link href="./loginstyle.css" rel="stylesheet">
+    <title>Home Page</title>
+  </head>
+
+  <body>
+    <h1 class="main">Husky Groups</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+        function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+            window.location.replace("./welcome.html");
+        }
+    </script>
+    <br>
+    <div class="words">
+    <h2 class="about">
+        <u>About Us</u>
+    </h2>
+    <br>
+    <h3 class = "aboutus">
+        Husky Groups is a student led service that <br>
+        allows you to find groups for classes or clubs.<br>
+        Search for already existing study groups to join<br>
+        or start your own group with your classmates.<br>
+    </h3>
+    </div>
+  </body>
 </html>
