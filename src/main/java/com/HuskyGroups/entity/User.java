@@ -17,7 +17,6 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 public class User {
     @Id
@@ -26,10 +25,12 @@ public class User {
             name = "UUID",
             strategy = "uuid2"
     )
-    @Column(name = "S_ID", updatable = false, nullable = false, length = 16)
-    private UUID id;
+    @Column(name = "User_ID", updatable = false, nullable = false, length = 16)
+    private UUID userId;
+    @Column(columnDefinition = "TINYTEXT")
     private String name;
     @Email(message = "Please provide a valid email address")
+    @Column(columnDefinition = "TINYTEXT")
     private String email;
     @CreationTimestamp
     private LocalDateTime createdDate;
