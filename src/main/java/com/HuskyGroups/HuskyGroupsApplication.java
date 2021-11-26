@@ -2,6 +2,7 @@ package com.HuskyGroups;
 
 import com.HuskyGroups.database.GroupRepository;
 import com.HuskyGroups.database.TopicRepository;
+import com.HuskyGroups.entity.Group;
 import com.HuskyGroups.entity.Topic;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,17 +18,23 @@ public class HuskyGroupsApplication {
 		return args -> {
 
 			// create a new Topic
-			Topic topic = new Topic();
-			topic.setName("xiaojiec");
-			topic.setDescription("practice purpose only!");
+			Topic chem = new Topic();
+			chem.setName("Chemistry");
+			chem.setDescription("practice purpose only!");
 
-			// save the book
-			topicRepository.save(topic);
+			Topic phy = new Topic();
+			phy.setName("Physics");
+			phy.setDescription("practice purpose only!");
 
-			// create and save new pages
-//			pageRepository.save(new Page(1, "Introduction contents", "Introduction", book));
-//			pageRepository.save(new Page(65, "Java 8 contents", "Java 8", book));
-//			pageRepository.save(new Page(95, "Concurrency contents", "Concurrency", book));
+			// save the topic
+			topicRepository.save(chem);
+			topicRepository.save(phy);
+
+
+
+			// create and save new groups
+			groupRepository.save(new Group("Chem hub","desc1", "links to gc: xxx", chem));
+			groupRepository.save(new Group("Chem McNair Chem Chat ", "desc 2", "Links to gc: xxx", chem));
 		};
 	}
 	public static void main(String[] args) {

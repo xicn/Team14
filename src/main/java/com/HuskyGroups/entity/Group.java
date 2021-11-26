@@ -1,5 +1,6 @@
 package com.HuskyGroups.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +9,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name="HG_Group")
 public class Group {
@@ -30,9 +28,60 @@ public class Group {
     @Column(columnDefinition = "TEXT")
     private String membersOnly;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="Topic_ID", nullable=false)
+    @JsonBackReference
     private Topic topic;
 
+    // No arg constructor
+    public Group() {
+    }
 
+    // All args constructor
+    public Group(String title, String description, String membersOnly, Topic topic) {
+        this.title = title;
+        this.description = description;
+        this.membersOnly = membersOnly;
+        this.topic = topic;
+    }
+
+    public UUID getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(UUID groupID) {
+        this.groupID = groupID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getMembersOnly() {
+        return membersOnly;
+    }
+
+    public void setMembersOnly(String membersOnly) {
+        this.membersOnly = membersOnly;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 }
