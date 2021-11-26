@@ -1,14 +1,19 @@
 package com.HuskyGroups.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name="HG_Topic")
 public class Topic {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -17,11 +22,15 @@ public class Topic {
             strategy = "uuid2"
     )
     @Column(name = "Topic_ID", updatable = false, nullable = false, length = 16)
-    private UUID activityID;
+    private UUID topicID;
     @Column(columnDefinition = "TINYTEXT")
     private String name;
     @Column(columnDefinition = "TINYTEXT")
     private String description;
+
+    // One to many relationship
+    @OneToMany(mappedBy="topic")
+    private Set<Group> items;
 
 
 }

@@ -6,10 +6,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,6 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="HG_User")
 public class User {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -28,7 +27,9 @@ public class User {
     @Column(name = "User_ID", updatable = false, nullable = false, length = 16)
     private UUID userId;
     @Column(columnDefinition = "TINYTEXT")
-    private String name;
+    private String firstName;
+    @Column(columnDefinition = "TINYTEXT")
+    private String lastName;
     @Email(message = "Please provide a valid email address")
     @Column(columnDefinition = "TINYTEXT")
     private String email;
