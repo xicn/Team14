@@ -1,6 +1,7 @@
 package com.HuskyGroups.entity;
 
-import java.util.UUID;
+import java.util.Set;
+
 
 public class UserDTO {
     private String id;
@@ -9,14 +10,7 @@ public class UserDTO {
     private String email;
     private String description;
     private String link;
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
+    private Set<MembershipDTO> groups;
 
     public String getId() {
         return id;
@@ -58,13 +52,20 @@ public class UserDTO {
         this.description = description;
     }
 
-    public UserDTO(User user) {
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.description = user.getDescription();
-        this.id = user.getUserId().toString();
-        this.link = user.getProfilePic();
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Set<MembershipDTO> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<MembershipDTO> groups) {
+        this.groups = groups;
     }
 
     public UserDTO() {
@@ -77,5 +78,14 @@ public class UserDTO {
         this.email = email;
         this.description = description;
         this.link = link;
+    }
+
+    public UserDTO(User user) {
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.description = user.getDescription();
+        this.id = user.getUserId().toString();
+        this.link = user.getProfilePic();
     }
 }

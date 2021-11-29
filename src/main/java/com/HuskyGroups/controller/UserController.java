@@ -12,11 +12,17 @@ import java.util.UUID;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/getAll")
+    @GetMapping("/createUser")
+    public User createUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
+    @GetMapping("/getAllUsers")
     public List<UserDTO> findAllUsers() {
         List<User> users = userService.getUsers();
         List<UserDTO> toReturn = new ArrayList<>();
@@ -24,11 +30,6 @@ public class UserController {
             toReturn.add(new UserDTO(u));
         }
         return toReturn;
-    }
-
-    @GetMapping("/createUser")
-    public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
     }
 
     @GetMapping("/getById/{strId}")
@@ -40,13 +41,7 @@ public class UserController {
         return new UserDTO(user);
     }
 
-    @PostMapping("/api/v1/new")
-    public User saveUser(@RequestBody User user) {
-        System.out.println(user);
-        return userService.saveUser(user);
-    }
-
-    @DeleteMapping("/delete/{strId}")
+    @DeleteMapping("/deleteById/{strId}")
     public String deleteUser(@PathVariable String strId) {
         UUID id = UUID.fromString(strId);
         return userService.deleteUser(id);

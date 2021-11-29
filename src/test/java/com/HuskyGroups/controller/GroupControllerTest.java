@@ -1,4 +1,4 @@
 package com.HuskyGroups.controller;
 
-public class LoginController {
+public class GroupControllerTest {
 }
