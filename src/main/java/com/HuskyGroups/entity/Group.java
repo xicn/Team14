@@ -1,12 +1,14 @@
 package com.HuskyGroups.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -20,7 +22,6 @@ public class Group {
     )
     @Column(name = "Group_ID", updatable = false, nullable = false, length = 16)
     private UUID groupID;
-
     @Column(columnDefinition = "TINYTEXT")
     private String title;
     @Column(columnDefinition = "TEXT")
@@ -30,8 +31,10 @@ public class Group {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="Topic_ID", nullable=false)
-    @JsonBackReference
     private Topic topic;
+
+    @OneToMany(mappedBy = "group")
+    private Set<Membership> groups;
 
     // No arg constructor
     public Group() {

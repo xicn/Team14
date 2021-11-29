@@ -29,16 +29,15 @@ public class Topic {
     // One to many relationship
     @OneToMany(mappedBy="topic", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private Set<Group> items;
+    private Set<Group> groups;
 
     public Topic() {
     }
 
-    public Topic(String name, String description, Set<Group> items) {
+    public Topic(String name, String description, Set<Group> groups) {
         this.name = name;
         this.description = description;
-        this.items = items;
+        this.groups = groups;
     }
 
     public UUID getTopicID() {
@@ -66,11 +65,11 @@ public class Topic {
     }
 
     public Set<Group> getItems() {
-        return items;
+        return groups;
     }
 
-    public void setItems(Set<Group> items) {
-        this.items = items;
+    public void setItems(Set<Group> groups) {
+        this.groups = groups;
     }
 }
 
