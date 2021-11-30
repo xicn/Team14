@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="searchstyle.css">
+    <!--<title> Responsive Footer | CodingLab</title>--->
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <!-- Google stuff -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="70477435980-hcoujshji22jhmmlqajnoop0i7l75453.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+   </head>
+</head>
+<body>
+    
+    <nav class="tbar">
+        <div class="tbar__main">
+            <a href="/" id="tbar__logo">HuskyGroups</a>
+            <div class="tbar___toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="tbar__menu">
+                <li class="tbar__item">
+                    <a href="welcome.html" class="tbar__links">Home</a>
+                </li>
+                <li class="tbar__item">
+                    <a href="searchgroup.html" class="tbar__links">Search Group</a>
+                    </li>
+                    <li class="tbar__item">
+                        <a href="creategroup.html" class="tbar__links">Create Group</a>
+                        </li>
+                        <li class="tbar__item">
+                            <a href="faq.html" class="tbar__links">FAQ</a>
+                            </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="main___home">
+            <div class="main__stuff">
+            <h1>Search For A Group!</h1>
+            <!-- <form action="/form/submit" method="GET"> 
+                <input type="text" name="text" class="search" placeholder="Search">
+                <input type="submit" name="submit" class="submit" value="Search">
+              </form> -->
+              <form role="search" id="form">
+                <input type="search" id="query" name="q"
+                 placeholder="Search..."
+                 aria-label="Search through site content">
+                <button>
+                  <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+                </button>
+              </form>
+        </div>
+    </div>
+
+    </div>
+
+
+
+    <footer>
+        <div class="content">
+          <div class="left box">
+            <div class="upper">
+              <div class="topic">About us</div>
+              <p>HuskyGroups is a platform where you can find resources for classes, clubs
+                  or even other groups at Michigan Tech. You can find new groups to join or
+                  even create your own. 
+              </p>
+            </div>
+            <div class="lower">
+              <div class="topic">Suggestions? Contact -</div>
+             
+             
+              <div class="email">
+                <a href="#"><i class="fas fa-envelope"></i>HuskyGroups@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="middle box">
+            <div class="topic">Other MTU Services</div>
+            <div><a href="#">My MichiganTech</a></div>
+            <div><a href="#">Banweb</a></div>
+            <div><a href="#">Canvas</a></div>
+            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <script>
+                function onSignIn(googleUser) {
+                    // Useful data for your client-side scripts:
+                    var profile = googleUser.getBasicProfile();
+                    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                    console.log('Full Name: ' + profile.getName());
+                    console.log('Given Name: ' + profile.getGivenName());
+                    console.log('Family Name: ' + profile.getFamilyName());
+                    console.log("Image URL: " + profile.getImageUrl());
+                    console.log("Email: " + profile.getEmail());
+                    // The ID token you need to pass to your backend:
+                    var id_token = googleUser.getAuthResponse().id_token;
+                    console.log("ID Token: " + id_token);
+                }
+            </script>
+            <a href="#" onclick="signOut();">Sign out</a>
+            <script>
+                function signOut() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                        window.location.replace("./login.html");
+                    });
+                }
+            </script>
+          </div>
+          <div class="right box">
+            <div class="topic">Socialmedia</div>
+            <form action="#">
+              
+              <div class="media-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="bottom">
+          <p>Copyright © 2021 <a href="#">HuskyGroups</a> All rights reserved</p>
+        </div>
+      </footer>
+
+</body>
+</html>
