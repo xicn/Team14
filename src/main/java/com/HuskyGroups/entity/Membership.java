@@ -9,7 +9,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="HG_Membership")
+@Table(name="HG_Membership",
+        indexes = {@Index(name = "group_user_membership", columnList = "User_ID,Group_ID", unique = true)})
 public class Membership {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

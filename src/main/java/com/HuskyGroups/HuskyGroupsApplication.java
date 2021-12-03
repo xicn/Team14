@@ -21,29 +21,6 @@ public class HuskyGroupsApplication {
 										 TopicRepository topicRepository, UserRepository userRepository, MembershipRepository membershipRepository) {
 		return args -> {
 
-//			// create a new Topic
-//			Topic chem = new Topic();
-//			chem.setName("Chemistry");
-//			chem.setDescription("practice purpose only!");
-//
-//			Topic phy = new Topic();
-//			phy.setName("Physics");
-//			phy.setDescription("practice purpose only!");
-//
-//			// save the topic
-//			topicRepository.save(chem);
-//			topicRepository.save(phy);
-
-
-
-			// create and save new groups
-//			Group g1 = groupRepository.save(new Group("Chem hub","desc1", "links to gc: xxx", chem));
-//			Group g2 = groupRepository.save(new Group("Chem McNair Chem Chat ", "desc 2", "Links to gc: xxx", chem));
-
-			User u1 = new User("Xiaojie", "Chen", "xiaojiec@gmail.com");
-			userRepository.save(u1);
-
-//			membershipRepository.save(new Membership(u1, g1));
 
 		};
 	}

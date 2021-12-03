@@ -33,18 +33,34 @@ public class Group {
     @JoinColumn(name="Topic_ID", nullable=false)
     private Topic topic;
 
+    public Group(UUID groupID, String title, String description, String membersOnly, Topic topic, Set<Membership> students) {
+        this.groupID = groupID;
+        this.title = title;
+        this.description = description;
+        this.membersOnly = membersOnly;
+        this.topic = topic;
+        this.students = students;
+    }
+
+    public Set<Membership> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Membership> students) {
+        this.students = students;
+    }
+
     @OneToMany(mappedBy = "group")
-    private Set<Membership> groups;
+    private Set<Membership> students;
 
     // No arg constructor
     public Group() {
     }
 
     // All args constructor
-    public Group(String title, String description, String membersOnly, Topic topic) {
+    public Group(String title, String description,Topic topic) {
         this.title = title;
         this.description = description;
-        this.membersOnly = membersOnly;
         this.topic = topic;
     }
 

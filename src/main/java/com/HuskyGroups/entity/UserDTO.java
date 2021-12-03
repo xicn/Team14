@@ -1,6 +1,9 @@
 package com.HuskyGroups.entity;
 
+import java.util.HashSet;
 import java.util.Set;
+import com.HuskyGroups.entity.Membership;
+import com.HuskyGroups.entity.MembershipDTO;
 
 
 public class UserDTO {
@@ -87,5 +90,11 @@ public class UserDTO {
         this.description = user.getDescription();
         this.id = user.getUserId().toString();
         this.link = user.getProfilePic();
+        Set<MembershipDTO> toSave = new HashSet<>();
+        for (Membership mem: user.getGroups()
+             ) {
+            toSave.add(new MembershipDTO(mem));
+        }
+        this.groups = toSave;
     }
 }

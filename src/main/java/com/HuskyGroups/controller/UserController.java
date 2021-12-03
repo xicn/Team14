@@ -1,7 +1,8 @@
 package com.HuskyGroups.controller;
 
-import com.HuskyGroups.entity.User;
-import com.HuskyGroups.entity.UserDTO;
+import com.HuskyGroups.database.MembershipRepository;
+import com.HuskyGroups.entity.*;
+import com.HuskyGroups.service.GroupService;
 import com.HuskyGroups.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,16 +11,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private GroupService groupService;
+    @Autowired
+    private MembershipRepository membershipRepository;
 
-    @GetMapping("/createUser")
+    @PostMapping("/createUser")
     public User createUser(@RequestBody User user) {
         return userService.saveUser(user);
+    }
+
+    @PostMapping("/addToGroup")
+    public MembershipDTO addToGroup(@RequestBody MembershipDTO member) {
+        User user = userService.getUserByID(UUID.fromString(member.getUserId()));
+        Group group = groupService.getGroupByID(UUID.fromString(member.getGroupId()));
+        Membership membership = membershipRepository.save(new Membership(user, group));
+        System.out.println(user.getGroups());
+        return new MembershipDTO(membership);
     }
 
     @GetMapping("/getAllUsers")
