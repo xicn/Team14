@@ -1,23 +1,24 @@
 package com.HuskyGroups.entity;
 
 public class MembershipDTO {
-    private Long membershipID;
+    private String membershipID;
     private String groupId;
     private String groupName;
     private String groupDescription;
     private String userId;
     private String userName;
+    private String userLink;
 
     public MembershipDTO() {
     }
 
-    public MembershipDTO(Long membershipID, String groupId, String groupName) {
+    public MembershipDTO(String membershipID, String groupId, String groupName) {
         this.membershipID = membershipID;
         this.groupId = groupId;
         this.groupName = groupName;
     }
 
-    public MembershipDTO(Long membershipID, String groupId, String groupName, String userId, String userName) {
+    public MembershipDTO(String membershipID, String groupId, String groupName, String userId, String userName) {
         this.membershipID = membershipID;
         this.groupId = groupId;
         this.groupName = groupName;
@@ -26,19 +27,20 @@ public class MembershipDTO {
     }
 
     public MembershipDTO(Membership membership) {
-        this.membershipID = membership.getId();
+        this.membershipID = membership.getMemberId().toString();
         this.groupId = membership.getGroup().getGroupID().toString();
         this.groupName = membership.getGroup().getTitle();
         this.userId = membership.getUser().getUserId().toString();
         this.userName = membership.getUser().getFirstName()+ ' ' + membership.getUser().getLastName();
         this.groupDescription = membership.getGroup().getDescription();
+        this.userLink = membership.getUser().getProfilePic();
     }
 
-    public Long getMembershipID() {
+    public String getMembershipID() {
         return membershipID;
     }
 
-    public void setMembershipID(Long membershipID) {
+    public void setMembershipID(String membershipID) {
         this.membershipID = membershipID;
     }
 
@@ -82,12 +84,30 @@ public class MembershipDTO {
         this.groupDescription = groupDescription;
     }
 
-    public MembershipDTO(Long membershipID, String groupId, String groupName, String groupDescription, String userId, String userName) {
+    public MembershipDTO(String membershipID, String groupId, String groupName, String groupDescription, String userId, String userName) {
         this.membershipID = membershipID;
         this.groupId = groupId;
         this.groupName = groupName;
         this.groupDescription = groupDescription;
         this.userId = userId;
         this.userName = userName;
+    }
+
+    public MembershipDTO(String membershipID, String groupId, String groupName, String groupDescription, String userId, String userName, String userLink) {
+        this.membershipID = membershipID;
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+        this.userId = userId;
+        this.userName = userName;
+        this.userLink = userLink;
+    }
+
+    public String getUserLink() {
+        return userLink;
+    }
+
+    public void setUserLink(String userLink) {
+        this.userLink = userLink;
     }
 }

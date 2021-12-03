@@ -36,6 +36,13 @@ public class UserController {
         return new MembershipDTO(membership);
     }
 
+    @DeleteMapping("/DeleteFromGroup/{memberId}")
+    public String DeleteFromGroup(@PathVariable String memberId) {
+        UUID id = UUID.fromString(memberId);
+        membershipRepository.deleteById(id);
+        return "Membership deleted! " + memberId;
+    }
+
     @GetMapping("/getAllUsers")
     public List<UserDTO> findAllUsers() {
         List<User> users = userService.getUsers();

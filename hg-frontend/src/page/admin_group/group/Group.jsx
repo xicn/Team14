@@ -156,11 +156,24 @@ export default function Group() {
       </div>
       <div className="groupContainer">
         <span className="userUpdateTitle">Users</span>
+        <Link to="/AddUserToGroup">
+          <button className="userAddButton" style={{ marginLeft: '20px' }}>
+            Add Users
+          </button>
+        </Link>
         <div className="cardsContainer">
-          <UserCard
-            name="Hello World"
-            link="https://cdn.pixabay.com/photo/2016/11/14/17/39/group-1824145_1280.png"
-          />
+          {data.users?.map((item, i) => {
+            return (
+              <UserCard
+                key={i}
+                link={item.userLink}
+                name={item.userName}
+                userId={item.userId}
+                groupId={item.groupId}
+                memberId={item.membershipID}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

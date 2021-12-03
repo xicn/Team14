@@ -30,13 +30,13 @@ export default function User() {
     };
   }, []);
 
-  /* Rich text editor */
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
-  useEffect(() => {
-    console.log(editorState.getCurrentContent());
-  }, [editorState]);
+  // /* Rich text editor */
+  // const [editorState, setEditorState] = useState(() =>
+  //   EditorState.createEmpty()
+  // );
+  // useEffect(() => {
+  //   console.log(editorState.getCurrentContent());
+  // }, [editorState]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -71,6 +71,7 @@ export default function User() {
         console.log(error);
       });
   };
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -206,6 +207,11 @@ export default function User() {
       </div>
       <div className="groupContainer">
         <span className="userUpdateTitle">Groups</span>
+        <Link to="/AddUserToGroup">
+          <button className="userAddButton" style={{ marginLeft: '20px' }}>
+            Join
+          </button>
+        </Link>
         <div className="cardsContainer">
           {data.groups?.map((item, i) => {
             console.log('test');
@@ -214,6 +220,8 @@ export default function User() {
                 key={i}
                 name={item.groupName}
                 description={item.groupDescription}
+                userId={item.userId}
+                groupId={item.groupId}
               />
             );
           })}

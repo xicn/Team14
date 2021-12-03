@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -15,8 +17,36 @@ const useStyles = makeStyles({
   },
 });
 
-export default function GroupCard({ name, description }) {
+export default function GroupCard({
+  name,
+  description,
+  userId,
+  groupId,
+  memberId,
+}) {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const handleLeave = () => {
+    axios
+      .delete(
+        'http://localhost:8080/api/v1/DeleteFromGroup',
+        {
+          membershipID: memberId,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+        // navigate({ pathname: '/groups' });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <Card className={classes.root}>
@@ -38,10 +68,13 @@ export default function GroupCard({ name, description }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Open
-        </Button>
-        <Button size="small" color="warning">
+        <Link to={'/group/' + groupId}>
+          <Button size="small" color="primary">
+            Open
+          </Button>
+        </Link>
+
+        <Button size="small" color="warning" onClick={handleLeave}>
           Leave
         </Button>
       </CardActions>

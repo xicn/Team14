@@ -7,6 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
 
 const useStyles = makeStyles({
   root: {
@@ -26,8 +29,30 @@ const useStyles = makeStyles({
   title: {},
 });
 
-export default function UserCard({ link, name }) {
+export default function UserCard({
+  link = 'https://cdn.pixabay.com/photo/2016/11/14/17/39/group-1824145_1280.png',
+  name,
+  userId,
+  groupId,
+  memberId,
+}) {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const [state, setstate] = useState(false);
+  const handleKick = () => {
+    console.log(memberId);
+    axios
+      .delete('http://localhost:8080/api/v1/users/DeleteFromGroup/' + memberId)
+      .then(function (response) {
+        console.log(response);
+        // navigate({ pathname: '/group/' + groupId });
+        setstate(!state);
+        window.location.reload(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <Card className={classes.root}>
@@ -55,11 +80,13 @@ export default function UserCard({ link, name }) {
         /> */}
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Open
-        </Button>
-        <Button size="small" color="warning">
-          Leave
+        <Link to={'/user/' + userId}>
+          <Button size="small" color="primary">
+            Open
+          </Button>
+        </Link>
+        <Button size="small" color="warning" onClick={handleKick}>
+          Kick
         </Button>
       </CardActions>
     </Card>

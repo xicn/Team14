@@ -1,11 +1,15 @@
 package com.HuskyGroups.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class GroupDTO {
     private String name;
     private String groupID;
     private String topicID;
     private String description;
     private String membersOnly;
+    private Set<MembershipDTO> users;
 
     public GroupDTO() {
     }
@@ -16,6 +20,12 @@ public class GroupDTO {
         this.topicID = group.getTopic().getTopicID().toString();
         this.description = group.getDescription();
         this.membersOnly = group.getMembersOnly();
+        Set<MembershipDTO> toSave = new HashSet<>();
+        for (Membership mem: group.getStudents()
+        ) {
+            toSave.add(new MembershipDTO(mem));
+        }
+        this.users = toSave;
     }
 
     public GroupDTO(String name, String groupID, String topicID, String description, String membersOnly) {
@@ -24,6 +34,23 @@ public class GroupDTO {
         this.topicID = topicID;
         this.description = description;
         this.membersOnly = membersOnly;
+    }
+
+    public GroupDTO(String name, String groupID, String topicID, String description, String membersOnly, Set<MembershipDTO> users) {
+        this.name = name;
+        this.groupID = groupID;
+        this.topicID = topicID;
+        this.description = description;
+        this.membersOnly = membersOnly;
+        this.users = users;
+    }
+
+    public Set<MembershipDTO> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<MembershipDTO> users) {
+        this.users = users;
     }
 
     public String getName() {

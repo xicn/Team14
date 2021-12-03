@@ -7,15 +7,20 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name="HG_Membership",
         indexes = {@Index(name = "group_user_membership", columnList = "User_ID,Group_ID", unique = true)})
 public class Membership {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Membership_ID")
-    Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "uuid2"
+    )
+    @Column(name = "Membership_ID", updatable = false, nullable = false, length = 16)
+    private UUID memberId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "User_ID")
@@ -45,12 +50,20 @@ public class Membership {
         this.group = group;
     }
 
-    public Long getId() {
-        return id;
+    public Membership(UUID memberId, User user, Group group, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+        this.memberId = memberId;
+        this.user = user;
+        this.group = group;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public UUID getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(UUID memberId) {
+        this.memberId = memberId;
     }
 
     public User getUser() {
