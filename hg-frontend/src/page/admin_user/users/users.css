@@ -1,0 +1,64 @@
+.users {
+  flex: 4;
+  /* margin-top: 10px; */
+  padding: 20px;
+}
+
+.userTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headline {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+.newUserButton {
+  width: 80px !important;
+  height: 30px !important;
+  border: none;
+  background-color: darkblue;
+  color: white;
+  /* padding: 7px 10px; */
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.newUserButton:hover {
+  background-color: rgb(15, 15, 197);
+}
+
+.inBetween {
+  margin-bottom: 10px;
+}
+
+.userListUser {
+  display: flex;
+  align-items: center;
+}
+
+.userListImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.userListEdit {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.userListDelete {
+  color: red;
+  cursor: pointer;
+}

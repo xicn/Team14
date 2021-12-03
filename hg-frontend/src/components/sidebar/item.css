@@ -1,0 +1,18 @@
+.sidebarListItem {
+  font-size: 30px;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.sidebarListItem.active,
+.sidebarListItem:hover {
+  background-color: rgb(228, 228, 250);
+}
+
+.sidebarIcon {
+  margin-right: 5px;
+  font-size: 30px !important;
+}
