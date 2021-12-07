@@ -69,6 +69,7 @@ export default function Groups() {
         pageSize={8}
         checkboxSelection
         getRowId={(row) => row.groupID}
+        style={{ color: 'white' }}
       />
     </div>
   );

@@ -10,7 +10,7 @@ export default function Topbar() {
       <div className="topbarWrapper">
         <div className="topLeft">
           <Link to="/" className="link">
-            <span className="logo">Husky Group</span>
+            <span className="logo">Husky Groups</span>
           </Link>
         </div>
         <div className="topRight">

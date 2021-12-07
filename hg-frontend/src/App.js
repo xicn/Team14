@@ -21,6 +21,7 @@ function App() {
       <Topbar />
       <div className="container">
         <Sidebar />
+        {/* <div className="left"> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/discover" element={<Discover />} />
@@ -40,6 +41,7 @@ function App() {
           <Route path="/AddUserToGroup" element={<AddUserToGroup />} />
         </Routes>
       </div>
+      {/* </div> */}
     </Router>
   );
 }

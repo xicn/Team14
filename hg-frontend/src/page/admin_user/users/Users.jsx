@@ -98,6 +98,7 @@ export default function Users() {
         columns={columns}
         pageSize={8}
         checkboxSelection
+        style={{ color: 'white' }}
       />
     </div>
   );

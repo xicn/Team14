@@ -5,6 +5,7 @@ import WidgetSm from '../../components/widgetSm/WidgetSm';
 import WidgetLg from '../../components/widgetLg/WidgetLg';
 import './home.css';
 import { userData } from '../../data/dummy';
+import Login from '../login/Login';
 
 export default function Home() {
   // return (
@@ -24,7 +25,10 @@ export default function Home() {
   // );
   return (
     <div className="homePage">
-      <h1 className="title">Home</h1>
+      <h1 className="title" style={{ color: 'white' }}>
+        Home
+      </h1>
+      <Login />
     </div>
   );
 }

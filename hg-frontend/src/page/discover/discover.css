@@ -1,4 +1,7 @@
 .discoverPage {
   flex: 4;
-  margin-top: 10px;
+  padding-top: 20px;
+  background-color: rgba(53, 53, 53, 255);
+  color: white;
+  padding-left: 20px;
 }

@@ -1,9 +1,14 @@
 .container {
   display: flex;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .link {
   text-decoration: none;
   color: inherit;
+}
+
+.left {
+  flex: 4;
+  background-color: rgba(53, 53, 53, 255);
 }

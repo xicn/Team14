@@ -11,7 +11,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,6 +36,15 @@ public class User {
     @Column(columnDefinition = "TINYTEXT")
     private String email;
 
+    @NotBlank
+    private String password;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "User_ID"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
     @OneToMany(mappedBy = "user")
 //    @JsonManagedReference
     private Set<Membership> groups;
@@ -45,6 +56,19 @@ public class User {
 
     @Column(columnDefinition = "TEXT")
     private String description= "Describe yourself!";
+
+    public User(UUID userId, String firstName, String lastName, String email, Set<Role> roles, Set<Membership> groups, LocalDateTime createdDate, LocalDateTime modifiedDate, String description, String profilePic) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles = roles;
+        this.groups = groups;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+        this.description = description;
+        this.profilePic = profilePic;
+    }
 
     public User(UUID userId, String firstName, String lastName, String email, Set<Membership> groups, LocalDateTime createdDate, LocalDateTime modifiedDate, String profilePic, String description) {
         this.userId = userId;
@@ -109,6 +133,27 @@ public class User {
 
     }
 
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(UUID userId, String firstName, String lastName, String email, String password, Set<Role> roles, Set<Membership> groups, LocalDateTime createdDate, LocalDateTime modifiedDate, String description, String profilePic) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.groups = groups;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+        this.description = description;
+        this.profilePic = profilePic;
+    }
+
     public UUID getUserId() {
         return userId;
     }
@@ -163,5 +208,21 @@ public class User {
 
     public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

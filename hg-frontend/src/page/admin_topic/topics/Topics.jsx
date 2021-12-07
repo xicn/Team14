@@ -67,6 +67,7 @@ export default function Topics() {
         pageSize={8}
         checkboxSelection
         getRowId={(row) => row.topicID}
+        style={{ color: 'white' }}
       />
     </div>
   );
