@@ -23,6 +23,7 @@ export default function GroupCard({
   userId,
   groupId,
   memberId,
+  groupRole,
 }) {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -48,6 +49,16 @@ export default function GroupCard({
       });
   };
 
+  let role = '';
+
+  if (groupRole === 'ROLE_OWNER') {
+    role = 'Owner  👑';
+  } else if (groupRole === 'ROLE_ADMIN') {
+    role = 'Admin  🔑';
+  } else {
+    role = 'Member  👤';
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -66,6 +77,17 @@ export default function GroupCard({
             {description}
           </Typography>
         </CardContent>
+        <p
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 242,
+            backgroundColor: 'black',
+            color: 'white',
+          }}
+        >
+          {role}
+        </p>
       </CardActionArea>
       <CardActions>
         <Link to={'/group/' + groupId}>
@@ -74,7 +96,7 @@ export default function GroupCard({
           </Button>
         </Link>
 
-        <Button size="small" color="warning" onClick={handleLeave}>
+        <Button size="small" color="inherit" onClick={handleLeave}>
           Leave
         </Button>
       </CardActions>

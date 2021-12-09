@@ -33,6 +33,8 @@ public class Group {
     @JoinColumn(name="Topic_ID", nullable=false)
     private Topic topic;
 
+
+
     public Group(UUID groupID, String title, String description, String membersOnly, Topic topic, Set<Membership> students) {
         this.groupID = groupID;
         this.title = title;

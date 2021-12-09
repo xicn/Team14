@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './topbar.css';
 import { NotificationsNone, Settings } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
@@ -39,6 +39,7 @@ export default function Topbar({
             <img
               src={loggedIn ? getCurrentUser().img : defaultAvatar}
               alt=""
+              style={{ objectFit: 'cover' }}
               className="topAvatar"
             />
           </Link>

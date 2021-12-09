@@ -22,8 +22,8 @@ import Welcome from './page/welcome/Welcome';
 
 function App() {
   const [loggedIn, setloggedIn] = useState(false);
+
   const currentUser = getCurrentUser();
-  console.log(currentUser);
 
   const handleLogOut = () => {
     localStorage.clear();

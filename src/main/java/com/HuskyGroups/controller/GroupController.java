@@ -22,7 +22,7 @@ public class GroupController {
 
 
     @PostMapping("/createGroup")
-    public Group createUser(@RequestBody GroupDTO group) {
+    public Group createGroup(@RequestBody GroupDTO group) {
         Topic topic = topicService.getTopicByID(UUID.fromString(group.getTopicID()));
         Group toSave = new Group(group.getName(), group.getDescription(), topic);
         groupService.saveGroup(toSave);

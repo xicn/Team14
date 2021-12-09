@@ -7,11 +7,8 @@ import com.HuskyGroups.service.UserService;
 import com.HuskyGroups.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -20,6 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
+
     @Autowired
     private JwtUtils jwtUtils;
     @Autowired
@@ -83,22 +81,8 @@ public class UserController {
         return new UserDTO(userService.updateUser(toSave));
     }
 
-
-
-    @GetMapping("/self/getUser")
-    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public UserDTO getSelf(@RequestHeader("Authorization") String jwtHeader, HttpServletRequest httpServletRequest) {
-
-        if (StringUtils.hasText(jwtHeader) && jwtHeader.startsWith("Bearer ")) {
-            String jwt = jwtHeader.substring(7, jwtHeader.length());
-            String email = jwtUtils.getUserNameFromJwtToken(jwt);
-            User user = userService.getUserByEmail(email);
-            return new UserDTO(user);
-        }
-        return null;
-    }
-
-    @PostMapping("/self/addToGroup")
+    @PostMapping("/addToGroup")
+    @PreAuthorize("hasRole('ADMIN')")
     public MembershipDTO addToGroup(@RequestBody MembershipDTO member) {
         User user = userService.getUserByID(UUID.fromString(member.getUserId()));
         Group group = groupService.getGroupByID(UUID.fromString(member.getGroupId()));
@@ -107,5 +91,4 @@ public class UserController {
         return new MembershipDTO(membership);
     }
 
-    // Delete self from
 }

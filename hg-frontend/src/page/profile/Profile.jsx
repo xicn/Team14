@@ -1,44 +1,38 @@
 import React from 'react';
 import './profile.css';
-import { Edit, MailOutline, PermIdentity, Undo } from '@material-ui/icons';
-import { Link, useParams } from 'react-router-dom';
+import { Edit, MailOutline, PermIdentity } from '@material-ui/icons';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { getHeaderWithOnlyJwtAuth } from '../../util/request';
 
 export default function Profile() {
-  const navigate = useNavigate();
-  const { userId } = useParams();
-  console.log(userId);
   const [data, setData] = useState([]);
   const [change, setChange] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
     axios(
-      'http://localhost:8080/api/v1/users/getUser',
+      'http://localhost:8080/api/v1/self/getUser',
       getHeaderWithOnlyJwtAuth(localStorage.getItem('auth'))
     ).then((result) => {
       if (isMounted) setData(result.data);
-      console.log(result.data);
+      // console.log(result.data);
     });
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [change]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const firstName = event.target.elements.firstName.value;
     const lastName = event.target.elements.lastName.value;
-    const email = event.target.elements.email.value;
+    const email = data.email;
     const description = event.target.elements.description.value;
     const link = event.target.elements.link.value;
-    console.log(firstName, lastName, link);
     const UserDTO = {
-      id: userId,
+      id: data?.id,
       firstName: firstName ? firstName : data.firstName,
       lastName: lastName ? lastName : data.lastName,
       email: email ? email : data.email,
@@ -46,17 +40,15 @@ export default function Profile() {
       link: link ? link : data.link,
     };
 
-    // console.log(obj);
     axios
-      .put('http://localhost:8080/api/v1/users/update', UserDTO, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      .put(
+        'http://localhost:8080/api/v1/self/update',
+        UserDTO,
+        getHeaderWithOnlyJwtAuth(localStorage.getItem('auth'))
+      )
       .then(function (response) {
-        console.log(response);
         setChange(!change);
-        navigate({ pathname: '/users' });
+        localStorage.setItem('img', response.data.link);
       })
       .catch(function (error) {
         console.log(error);
@@ -112,7 +104,7 @@ export default function Profile() {
 
             <div className="userShowInfo">
               <Edit className="userShowIcon" />
-              <span className="userShowInfoTitle">{data.email}</span>
+              <span className="userShowInfoTitle">{data.description}</span>
             </div>
           </div>
         </div>
@@ -144,7 +136,7 @@ export default function Profile() {
                   name="lastName"
                 />
               </div>
-              <div className="userUpdateItem">
+              {/* <div className="userUpdateItem">
                 <label>Email</label>
                 <input
                   type="text"
@@ -152,7 +144,7 @@ export default function Profile() {
                   className="userUpdateInput"
                   name="email"
                 />
-              </div>
+              </div> */}
               <div className="userUpdateItem">
                 <label>Description</label>
                 <input
@@ -173,7 +165,12 @@ export default function Profile() {
               </div>
             </div>
             <div className="userUpdateRight"></div>
-            <button className="userUpdateButton">Update</button>
+            <button
+              className="userUpdateButton"
+              style={{ backgroundColor: 'rgba(255, 206, 0, 255)' }}
+            >
+              Update
+            </button>
           </form>
         </div>
       </div>

@@ -8,6 +8,7 @@ public class MembershipDTO {
     private String userId;
     private String userName;
     private String userLink;
+    private GRole groupRole;
 
     public MembershipDTO() {
     }
@@ -26,6 +27,17 @@ public class MembershipDTO {
         this.userName = userName;
     }
 
+    public MembershipDTO(String membershipID, String groupId, String groupName, String groupDescription, String userId, String userName, String userLink, GRole groupRole) {
+        this.membershipID = membershipID;
+        this.groupId = groupId;
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+        this.userId = userId;
+        this.userName = userName;
+        this.userLink = userLink;
+        this.groupRole = groupRole;
+    }
+
     public MembershipDTO(Membership membership) {
         this.membershipID = membership.getMemberId().toString();
         this.groupId = membership.getGroup().getGroupID().toString();
@@ -34,6 +46,7 @@ public class MembershipDTO {
         this.userName = membership.getUser().getFirstName()+ ' ' + membership.getUser().getLastName();
         this.groupDescription = membership.getGroup().getDescription();
         this.userLink = membership.getUser().getProfilePic();
+        this.groupRole = membership.getGroupRole();
     }
 
     public String getMembershipID() {
@@ -109,5 +122,13 @@ public class MembershipDTO {
 
     public void setUserLink(String userLink) {
         this.userLink = userLink;
+    }
+
+    public GRole getGroupRole() {
+        return groupRole;
+    }
+
+    public void setGroupRole(GRole groupRole) {
+        this.groupRole = groupRole;
     }
 }

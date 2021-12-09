@@ -30,6 +30,9 @@ public class Membership {
     @JoinColumn(name = "Group_ID")
     Group group;
 
+    // When you are added to group you are default to role member
+    GRole groupRole = GRole.ROLE_MEMBER;
+
     @CreationTimestamp
     private LocalDateTime createdDate;
     @UpdateTimestamp
@@ -50,10 +53,25 @@ public class Membership {
         this.group = group;
     }
 
+    public Membership(User user, Group group, GRole role) {
+        this.user = user;
+        this.group = group;
+        this.groupRole = role;
+    }
+
     public Membership(UUID memberId, User user, Group group, LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.memberId = memberId;
         this.user = user;
         this.group = group;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Membership(UUID memberId, User user, Group group, GRole groupRole, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+        this.memberId = memberId;
+        this.user = user;
+        this.group = group;
+        this.groupRole = groupRole;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
     }
@@ -96,6 +114,14 @@ public class Membership {
 
     public void setModifiedDate(LocalDateTime modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public GRole getGroupRole() {
+        return groupRole;
+    }
+
+    public void setGroupRole(GRole groupRole) {
+        this.groupRole = groupRole;
     }
 }
 
