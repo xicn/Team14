@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+@Deprecated
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;

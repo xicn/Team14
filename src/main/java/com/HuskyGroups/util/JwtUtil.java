@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-@Service
+@Deprecated
+//@Service
 public class JwtUtil {
 
     private String secret = "huskygroups";

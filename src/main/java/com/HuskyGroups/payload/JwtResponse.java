@@ -10,13 +10,26 @@ public class JwtResponse {
     private String name;
     private String email;
     private List<String> roles;
+    private String img;
 
-    public JwtResponse(String accessToken, UUID id, String username, String email, List<String> roles) {
-        this.token = accessToken;
+
+
+//    public JwtResponse(String accessToken, UUID id, String username, String email, List<String> roles) {
+//        this.token = accessToken;
+//        this.id = id;
+//        this.name = username;
+//        this.email = email;
+//        this.roles = roles;
+//    }
+
+    public JwtResponse(String token, String type, UUID id, String name, String email, List<String> roles, String img) {
+        this.token = token;
+        this.type = type;
         this.id = id;
-        this.name = username;
+        this.name = name;
         this.email = email;
         this.roles = roles;
+        this.img = img;
     }
 
     public String getAccessToken() {
@@ -61,5 +74,33 @@ public class JwtResponse {
 
     public List<String> getRoles() {
         return roles;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImag(String img) {
+        this.img = img;
     }
 }

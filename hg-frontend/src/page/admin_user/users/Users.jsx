@@ -4,6 +4,7 @@ import { DeleteOutline } from '@material-ui/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getHeaderWithOnlyJwtAuth } from '../../../util/request';
 
 export default function Users() {
   const [data, setData] = useState([]);
@@ -11,7 +12,10 @@ export default function Users() {
 
   useEffect(() => {
     let isMounted = true;
-    axios('http://localhost:8080/api/v1/users/getAllUsers').then((result) => {
+    axios(
+      'http://localhost:8080/api/v1/users/getAllUsers',
+      getHeaderWithOnlyJwtAuth(localStorage.getItem('auth'))
+    ).then((result) => {
       if (isMounted) setData(result.data);
       console.log(result.data);
     });
@@ -98,7 +102,7 @@ export default function Users() {
         columns={columns}
         pageSize={8}
         checkboxSelection
-        style={{ color: 'white' }}
+        style={{ color: 'black', backgroundColor: 'white' }}
       />
     </div>
   );

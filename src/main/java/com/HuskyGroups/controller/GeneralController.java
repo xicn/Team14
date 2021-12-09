@@ -20,8 +20,7 @@ public class GeneralController {
 //    public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
 //        return Collections.singletonMap("name", principal.getAttribute("name"));
 //    }
-    @Autowired
-    private JwtUtil jwtUtil;
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -36,15 +35,15 @@ public class GeneralController {
         return "Welcome to HuskyGroup!!";
     }
 
-    @PostMapping("/authenticate")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
-            );
-        } catch (Exception ex) {
-            throw new Exception("inavalid username/password");
-        }
-        return jwtUtil.generateToken(authRequest.getUserName());
-    }
+//    @PostMapping("/authenticate")
+//    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+//        try {
+//            authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
+//            );
+//        } catch (Exception ex) {
+//            throw new Exception("inavalid username/password");
+//        }
+//        return jwtUtil.generateToken(authRequest.getUserName());
+//    }
 }

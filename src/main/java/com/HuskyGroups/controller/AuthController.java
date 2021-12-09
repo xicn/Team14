@@ -6,7 +6,6 @@ import com.HuskyGroups.database.UserRepository;
 import com.HuskyGroups.entity.*;
 import com.HuskyGroups.payload.JwtResponse;
 import com.HuskyGroups.payload.MessageResponse;
-import com.HuskyGroups.service.UserService;
 import com.HuskyGroups.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,12 +54,14 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+        User u1 = userRepository.findByEmail(userDetails.getEmail());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return ResponseEntity.ok(new JwtResponse(jwt,"Bearer",
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
+                roles,u1.getProfilePic()
+                ));
     }
 
     @PostMapping("/signup")

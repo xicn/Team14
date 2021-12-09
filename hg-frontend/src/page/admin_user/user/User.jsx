@@ -4,8 +4,6 @@ import './user.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Editor } from 'react-draft-wysiwyg';
-import { EditorState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import GroupCard from '../../../components/groupCard/GroupCard';
 
@@ -15,7 +13,6 @@ export default function User() {
   console.log(userId);
   const [data, setData] = useState([]);
   const [change, setChange] = useState(true);
-  const arr = [1, 2, 3, 4];
 
   useEffect(() => {
     let isMounted = true;
@@ -29,14 +26,6 @@ export default function User() {
       isMounted = false;
     };
   }, []);
-
-  // /* Rich text editor */
-  // const [editorState, setEditorState] = useState(() =>
-  //   EditorState.createEmpty()
-  // );
-  // useEffect(() => {
-  //   console.log(editorState.getCurrentContent());
-  // }, [editorState]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

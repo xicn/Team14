@@ -26,6 +26,11 @@ public class TopicController {
         return topicService.saveTopic(topic);
     }
 
+    @PostMapping("/createTopicList")
+    public List<Topic> createTopicList(@RequestBody List<Topic> topics) {
+        return topicService.saveTopics(topics);
+    }
+
     @GetMapping("/getAllTopics")
     public List<TopicDTO> findAllTopics() {
         List<Topic> topics = topicService.getTopics();

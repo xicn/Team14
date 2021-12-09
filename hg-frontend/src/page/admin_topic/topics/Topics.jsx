@@ -5,13 +5,17 @@ import { DeleteOutline } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getHeaderWithOnlyJwtAuth } from '../../../util/request';
 
 export default function Topics() {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
-    axios('http://localhost:8080/api/v1/topics/getAllTopics').then((result) => {
+    axios(
+      'http://localhost:8080/api/v1/topics/getAllTopics',
+      getHeaderWithOnlyJwtAuth(localStorage.getItem('auth'))
+    ).then((result) => {
       // Set state to results fetched from API
       if (isMounted) setTopics(result.data);
       console.log(result.data);
@@ -67,7 +71,7 @@ export default function Topics() {
         pageSize={8}
         checkboxSelection
         getRowId={(row) => row.topicID}
-        style={{ color: 'white' }}
+        style={{ color: 'black', backgroundColor: 'white' }}
       />
     </div>
   );
