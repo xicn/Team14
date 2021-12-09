@@ -1,0 +1,87 @@
+body{
+    --color-primary: white;
+    background-color: white;
+    margin:0;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: black;
+    background: white;
+    background-size: cover;
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    background-size: cover;
+    box-sizing: border-box;
+    border-radius: 6px;
+    outline: none;
+    background: black;
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.g-signin2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    padding: 1rem;
+}
+
+.words{
+    width: 400px;
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 0 400px rgba(255, 215, 0, .6);
+    color: white;
+    background: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.form{
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+   width: 400px;
+   max-width: 400px;
+   margin: auto;
+   padding: 2rem;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+}
+
+.loginbutton{
+    width : 100%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: black;
+    border-color: black;
+    cursor: pointer;
+    background: white;
+}
+
+.uspw{
+     display: block;
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+        border-radius: 6px;
+        border: 1px solid black;
+        outline: none;
+        background: white;
+        transition: background .2s, border-color .2s;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: black;
+}
