@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @CrossOrigin
@@ -57,4 +58,40 @@ public class GroupController {
         toSave.setMembersOnly(group.getMembersOnly());
         return new GroupDTO(groupService.updateGroup(toSave));
     }
+    
+    
+    // Function to search groups by name with a string input
+    @GetMapping("/searchByGroup/{strName}")
+    public List<GroupDTO> searchGroupByGroup(@PathVariable String strName){
+    	List<Group> groups = groupService.getGroups();
+    	List<GroupDTO> toReturn = new ArrayList<>();
+    	// for each group in the groups array, see if the name contains the chars provided
+    	for(Group g: groups) {
+    		if(g.getTitle().toLowerCase().contains(strName.toLowerCase())) {
+    			toReturn.add(new GroupDTO(g));
+    		}
+    	}
+    	return toReturn;
+    }
+    
+    
+    // Function to search for groups by topic name with a string input
+    @GetMapping("/searchByTopic/{strName}")
+    public List<GroupDTO> searchGroupByTopic(@PathVariable String strName){
+    	List<Topic> topics = topicService.getTopics();
+    	List<GroupDTO> toReturn = new ArrayList<>();
+    	// for each topic in the topic array, see if the name contains the chars provided
+    	for(Topic t: topics) {
+    		if(t.getName().toLowerCase().contains(strName.toLowerCase())) {
+    			// get the set of groups within this topic
+    			Set<Group> groups = t.getGroups();
+    			// for each group, add it to the list of groups to return
+    			for(Group g: groups) {
+    				toReturn.add(new GroupDTO(g));
+    			}
+    		}
+    	}
+    	return toReturn;
+    }
+    
 }
